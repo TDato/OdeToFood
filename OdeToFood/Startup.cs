@@ -33,13 +33,14 @@ namespace OdeToFood
                 // Doing this as a singleton but only for development and test purposes
                 // Lists are not thread safe
                 // When data changes start being made, everyone will see the same set of restaurants
-                // TODO: Swap out to work with real database
+                // TODO: Swap out to work with real database - DONE
                 //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
 
             services.AddRazorPages();
- 
+            services.AddControllers();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -74,6 +75,7 @@ namespace OdeToFood
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
