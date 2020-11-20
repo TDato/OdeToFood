@@ -31,13 +31,14 @@ namespace OdeToFood
             {
                 options.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDB"));
             });
-                // Doing this as a singleton but only for development and test purposes
-                // Lists are not thread safe
-                // When data changes start being made, everyone will see the same set of restaurants
-                // TODO: Swap out to work with real database - DONE
-                //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            // Doing this as a singleton but only for development and test purposes
+            // Lists are not thread safe
+            // When data changes start being made, everyone will see the same set of restaurants
+            // TODO: Swap out to work with real database - DONE
+            //services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
 
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
+            //services.AddScoped<IRestaurantData, InMemoryRestaurantData>();
 
             services.AddRazorPages();
             services.AddControllers();
